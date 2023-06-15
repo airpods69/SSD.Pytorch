@@ -18,14 +18,11 @@ else:
     import xml.etree.ElementTree as ET
 
 VOC_CLASSES = (  # always index 0
-    'aeroplane', 'bicycle', 'bird', 'boat',
-    'bottle', 'bus', 'car', 'cat', 'chair',
-    'cow', 'diningtable', 'dog', 'horse',
-    'motorbike', 'person', 'pottedplant',
-    'sheep', 'sofa', 'train', 'tvmonitor')
+    'Light', 'C_arm', 'Bed'
+               )
 
 # note: if you used our download scripts, this should be right
-VOC_ROOT = osp.join('./', "data/VOCdevkit/")
+VOC_ROOT = osp.join('./', "./ORDATA/dataset/")
 
 
 class VOCAnnotationTransform(object):
@@ -95,9 +92,9 @@ class VOCDetection(data.Dataset):
     """
 
     def __init__(self, root,
-                 image_sets=[('2007', 'trainval'), ('2012', 'trainval')],
+                 image_sets=['trainval'],
                  transform=None, target_transform=VOCAnnotationTransform(),
-                 dataset_name='VOC0712'):
+                 dataset_name='dataset'):
         self.root = root
         self.image_set = image_sets
         self.transform = transform
@@ -106,10 +103,11 @@ class VOCDetection(data.Dataset):
         self._annopath = osp.join('%s', 'Annotations', '%s.xml')
         self._imgpath = osp.join('%s', 'JPEGImages', '%s.jpg')
         self.ids = list()
-        for (year, name) in image_sets:
-            rootpath = osp.join(self.root, 'VOC' + year)
-            for line in open(osp.join(rootpath, 'ImageSets', 'Main', name + '.txt')):
+        for i in image_sets:
+            rootpath = osp.join(self.root, "train/")
+            for line in open(osp.join(rootpath, 'ImageSets', i + '.txt')):
                 self.ids.append((rootpath, line.strip()))
+
 
     def __getitem__(self, index):
         im, gt, h, w = self.pull_item(index)
@@ -182,3 +180,10 @@ class VOCDetection(data.Dataset):
             tensorized version of img, squeezed
         '''
         return torch.Tensor(self.pull_image(index)).unsqueeze_(0)
+
+def main():
+    dataset = VOCDetection("/mnt/storage/RediMinds/didactic-disco/SSD.Pytorch/data/ORDATA/dataset/")
+    print(dataset.pull_image(0))
+
+if __name__ == "__main__":
+    main()

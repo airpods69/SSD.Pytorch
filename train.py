@@ -42,7 +42,7 @@ parser.add_argument('--start_epoch', default=0, type=int,
                     help='Resume training at this epoch')
 parser.add_argument('--num_workers', default=6, type=int,
                     help='Number of workers used in dataloading')
-parser.add_argument('--cuda', default=True, type=str2bool,
+parser.add_argument('--cuda', default=False, type=str2bool,
                     help='Use CUDA to train model')
 parser.add_argument('--lr', '--learning-rate', default=1e-3, type=float,
                     help='initial learning rate')
