@@ -1,13 +1,12 @@
 import os
 
-images = os.listdir("./JPEGImages/")
+l = os.listdir("./Annotations/")
 
-l = [i.rsplit(".jpg") for i in images]
-
+ann = [i.rstrip(".xml") for i in l]
 s = ""
-for i in l:
-    s += i[0] + "\n"
+for i in ann:
+    s += i + "\n"
 
-f = open("./ImageSets/trainval.txt", 'w')
+f = open("./ImageSets/trainval.txt", "w")
 f.writelines(s)
 f.close()

@@ -201,7 +201,7 @@ def train():
             loc_loss += loss_l.item()
             conf_loss += loss_c.item()
 
-            if iteration % 10 == 0:
+            if iteration % 1 == 0:
                 print('Epoch '+repr(epoch)+'|| iter ' + repr(iteration % epoch_size)+'/'+repr(epoch_size) +'|| Total iter '+repr(iteration)+ ' || Total Loss: %.4f || Loc Loss: %.4f || Cls Loss: %.4f || LR: %f || timer: %.4f sec.\n' % (loss.item(),loss_l.item(),loss_c.item(),cur_lr,(t1 - t0)), end=' ')
                 loss_cls.append(loss_c.item())
                 loss_loc.append(loss_l.item())

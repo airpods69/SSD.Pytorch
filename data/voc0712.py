@@ -56,7 +56,7 @@ class VOCAnnotationTransform(object):
             difficult = int(obj.find('difficult').text) == 1
             if not self.keep_difficult and difficult:
                 continue
-            name = obj.find('name').text.lower().strip()
+            name = obj.find('name').text.strip()
             bbox = obj.find('bndbox')
 
             pts = ['xmin', 'ymin', 'xmax', 'ymax']
@@ -120,7 +120,8 @@ class VOCDetection(data.Dataset):
     def pull_item(self, index):
         img_id = self.ids[index]
 
-        target = ET.parse(self._annopath % img_id).getroot()
+        target_path = self._annopath % img_id
+        target = ET.parse(target_path).getroot()
         img = cv2.imread(self._imgpath % img_id)
         height, width, channels = img.shape
 
@@ -134,7 +135,8 @@ class VOCDetection(data.Dataset):
             img = img[:, :, (2, 1, 0)]
             # img = img.transpose(2, 0, 1)
             target = np.hstack((boxes, np.expand_dims(labels, axis=1)))
-        return torch.from_numpy(img).permute(2, 0, 1), target, height, width
+        res = torch.from_numpy(img).permute(2, 0, 1), target, height, width
+        return res
         # return torch.from_numpy(img), target, height, width
 
     def pull_image(self, index):

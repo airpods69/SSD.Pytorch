@@ -407,7 +407,7 @@ class SSDAugmentation(object):
             ToAbsoluteCoords(),
             PhotometricDistort(),
             Expand(self.mean),
-            RandomSampleCrop(),
+#            RandomSampleCrop(),
             RandomMirror(),
             ToPercentCoords(),
             Resize(self.size),

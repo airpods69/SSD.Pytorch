@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>C-arm-surgeon_jpg.rf.0f6f9e410bc7e6461ead8aa182a1f92a.jpg</filename>
+	<path>C-arm-surgeon_jpg.rf.0f6f9e410bc7e6461ead8aa182a1f92a.jpg</path>
+	<source>
+		<database>roboflow.ai</database>
+	</source>
+	<size>
+		<width>400</width>
+		<height>267</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Light</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>21</xmin>
+			<xmax>188</xmax>
+			<ymin>26</ymin>
+			<ymax>221</ymax>
+		</bndbox>
+	</object>
+</annotation>

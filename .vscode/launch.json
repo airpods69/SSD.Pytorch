@@ -1,0 +1,17 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Train debugger",
+            "type": "python",
+            "request": "launch",
+            "program": "./train.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--input", "512", "--dataset_root", "/mnt/storage/RediMinds/didactic-disco/SSD.Pytorch/data/ORDATA/dataset/", "--num_class", "3", "--num_epoch", "10", "--batch_size", "4"]
+        }
+    ]
+}
